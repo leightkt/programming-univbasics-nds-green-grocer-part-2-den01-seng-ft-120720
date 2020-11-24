@@ -54,6 +54,16 @@ end
 #     clearance_cart
 # end
 
+def apply_clearance(cart)
+  cart.map{ |item|
+    if item[:clearance] == true
+      item[:price] = (item[:price] * 0.80).round(2)
+    end
+  }
+    cart
+end
+
+
 def checkout(cart, coupons)
   # Consult README for inputs and outputs
   #
