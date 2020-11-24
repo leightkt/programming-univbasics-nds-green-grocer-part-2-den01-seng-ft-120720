@@ -29,7 +29,6 @@ def apply_coupons(cart, coupons)
   # REMEMBER: This method **should** update cart
   cart.each do |item|
     coupons.each do |coupon|
-      binding.pry
       if item[:item] == coupon[:item]
         if item[:count] >= coupon[:num]
         item[:count] -= coupon[:num]
