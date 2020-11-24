@@ -1,27 +1,48 @@
 require_relative './part_1_solution.rb'
+require 'pry'
+# def apply_coupons(cart, coupons)
+#   # Consult README for inputs and outputs
+#   #
+#   # REMEMBER: This method **should** update cart
+#   updated_cart = Array.new
+#   cart.each do |item|
+#     coupons.each do |coupon|
+#       if item[:item] == coupon[:item]
+#         if item[:count] >= coupon[:num]
+#         item[:count] -= coupon[:num]
+#         discount_item = {}
+#         discount_item[:item] = item[:item] + " W/COUPON"
+#         discount_item[:price] = coupon[:cost] / coupon[:num]
+#         discount_item[:clearance] = item[:clearance]
+#         discount_item[:count] = coupon[:num]
+#         updated_cart << discount_item
+#         end
+#       end
+#     end
+#     updated_cart << item 
+#   end
+#   updated_cart
+# end
 
 def apply_coupons(cart, coupons)
   # Consult README for inputs and outputs
-  #
   # REMEMBER: This method **should** update cart
-  updated_cart = Array.new
   cart.each do |item|
     coupons.each do |coupon|
+      binding.pry
       if item[:item] == coupon[:item]
         if item[:count] >= coupon[:num]
         item[:count] -= coupon[:num]
-        discount_item = {}
-        discount_item[:item] = item[:item] + " W/COUPON"
-        discount_item[:price] = coupon[:cost] / coupon[:num]
-        discount_item[:clearance] = item[:clearance]
-        discount_item[:count] = coupon[:num]
-        updated_cart << discount_item
+        cart[:item] => {}
+        cart[:item] = item[:item] + " W/COUPON"
+        cart[:item][:price] = coupon[:cost] / coupon[:num]
+        cart[:item][:clearance] = item[:clearance]
+        cart[:item][:count] = coupon[:num]
         end
       end
     end
-    updated_cart << item 
   end
-  updated_cart
+  cart
 end
 
 def apply_clearance(cart)
