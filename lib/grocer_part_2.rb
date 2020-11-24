@@ -25,22 +25,18 @@ require 'pry'
 # end
 
 def apply_coupons(cart, coupons)
-  # Consult README for inputs and outputs
-  # REMEMBER: This method **should** update cart
-  cart.each do |item|
-    coupons.each do |coupon|
-      if item[:item] == coupon[:item]
-        if item[:count] >= coupon[:num]
+  cart.map{ |item|
+    coupons.each{ |coupon|
+      if item[:item] == coupon[:item] && item[:count] >= coupon[:num]
         item[:count] -= coupon[:num]
-        cart[:item] => {}
-        cart[:item] = item[:item] + " W/COUPON"
-        cart[:item][:price] = coupon[:cost] / coupon[:num]
-        cart[:item][:clearance] = item[:clearance]
-        cart[:item][:count] = coupon[:num]
-        end
+        cart.push({:item => item[:item] + " W/COUPON", 
+        :price => coupon[:cost] / coupon[:num],
+        :clearance => item[:clearance],
+        :count => coupon[:num]
+      })
       end
-    end
-  end
+    }
+  }
   cart
 end
 
